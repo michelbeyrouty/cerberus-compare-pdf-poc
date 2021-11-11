@@ -18,13 +18,13 @@ storeAsImage(pageToConvertAsImage).then((resolve) => {
   console.log('Page 1 is now converted as image');
 
   const img1 = PNG.sync.read(fs.readFileSync('./images/blank.png'));
-  const img2 = PNG.sync.read(fs.readFileSync('./images/converted.png'));
+  const img2 = PNG.sync.read(fs.readFileSync('./images/converted.1.png'));
   const {
-    width, height, 
+    width, height,
   } = img1;
   const diff = new PNG( {
     width,
-    height, 
+    height,
   } );
 
   pixelmatch(img1.data, img2.data, diff.data, width, height, {
