@@ -12,34 +12,41 @@ const options = {
   width: 600,
   height: 600,
 };
-const storeAsImage = fromPath('./files/ok_sample.pdf', options);
+const filePath = './files/ok_sample.pdf';
 const pageToConvertAsImage = 1;
+const isBase64 = false;
 
-storeAsImage(pageToConvertAsImage).then((resolve) => {
-  console.log('Page 1 is now converted as image');
 
-  //Calculate pixel difference
+fromPath(filePath, options).convert(pageToConvertAsImage, isBase64);
 
-  const blankImage = PNG.sync.read(fs.readFileSync('./images/blank.png'));
-  const convertedOkImage = PNG.sync.read(fs.readFileSync('./images/converted.1.png'));
+// storeAsImage(pageToConvertAsImage).then(() => {
 
-  const { width, height } = blankImage;
+//   storeAsImage(pageToConvertAsImage).then(() => {
 
-  const diff = new PNG( {
-    width,
-    height,
-  } );
+//     // Calculate pixel difference
 
-  const numDiffPixelsWithBlank = pixelmatch(blankImage.data, convertedOkImage.data, diff.data, width, height, {
-    threshold: 0.1,
-  });
+//     const blankReferenceImage = PNG.sync.read(fs.readFileSync('./images/blank.png'));
+//     const convertedOkImage = PNG.sync.read(fs.readFileSync('./images/converted.1.png'));
 
-  const numDiffPixelsWithOk = pixelmatch(blankImage.data, img2.data, diff.data, width, height, {
-    threshold: 0.1,
-  });
+//     const { width, height } = blankReferenceImage;
 
-  console.log('numDiffPixels with ok_sample:  ' + numDiffPixelsWithBlank);
-  console.log('numDiffPixels with blank:  ' + numDiffPixelsWithOk);
+//     const diff = new PNG( {
+//       width,
+//       height,
+//     } );
 
-  return numDiffPixels;
-});
+//     const numDiffPixelsWithBlank = pixelmatch(blankReferenceImage.data, convertedOkImage.data, diff.data, width, height, {
+//       threshold: 0.1,
+//     });
+
+//     const numDiffPixelsWithOk = pixelmatch(blankReferenceImage.data, img2.data, diff.data, width, height, {
+//       threshold: 0.1,
+//     });
+
+//     console.log('numDiffPixels with ok_sample:  ' + numDiffPixelsWithBlank);
+//     console.log('numDiffPixels with blank:  ' + numDiffPixelsWithOk);
+
+//     return numDiffPixels;
+
+//   });
+// });
