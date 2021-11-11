@@ -9,7 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "pdf2pic": "^2.1.4",
-    "pixelmatch": "^5.2.1"
+    "pixelmatch": "^5.2.1",
+    "pngjs": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-plugin-jsonc": "^2.0.0"
   }
 }
