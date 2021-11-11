@@ -3,6 +3,7 @@ const fs = require('fs');
 const PNG = require('pngjs').PNG;
 const pixelmatch = require('pixelmatch');
 
+// Convert PDF to image
 const options = {
   density: 100,
   saveFilename: 'converted',
@@ -11,32 +12,34 @@ const options = {
   width: 600,
   height: 600,
 };
-const storeAsImage = fromPath('./files/blank.pdf', options);
+const storeAsImage = fromPath('./files/ok_sample.pdf', options);
 const pageToConvertAsImage = 1;
 
 storeAsImage(pageToConvertAsImage).then((resolve) => {
   console.log('Page 1 is now converted as image');
 
-  const img1 = PNG.sync.read(fs.readFileSync('./images/blank.png'));
-  const img2 = PNG.sync.read(fs.readFileSync('./images/converted.1.png'));
-  const {
-    width, height,
-  } = img1;
+  //Calculate pixel difference
+
+  const blankImage = PNG.sync.read(fs.readFileSync('./images/blank.png'));
+  const convertedOkImage = PNG.sync.read(fs.readFileSync('./images/converted.1.png'));
+
+  const { width, height } = blankImage;
+
   const diff = new PNG( {
     width,
     height,
   } );
 
-  pixelmatch(img1.data, img2.data, diff.data, width, height, {
+  const numDiffPixelsWithBlank = pixelmatch(blankImage.data, convertedOkImage.data, diff.data, width, height, {
     threshold: 0.1,
   });
 
-  fs.writeFileSync('diff.png', PNG.sync.write(diff));
+  const numDiffPixelsWithOk = pixelmatch(blankImage.data, img2.data, diff.data, width, height, {
+    threshold: 0.1,
+  });
 
-  return resolve;
+  console.log('numDiffPixels with ok_sample:  ' + numDiffPixelsWithBlank);
+  console.log('numDiffPixels with blank:  ' + numDiffPixelsWithOk);
+
+  return numDiffPixels;
 });
-
-
-
-
-
