@@ -1,8 +1,8 @@
-const calcualteDifference = require('./core/calcualteDifference');
-const convert = require('./core/convert');
+const { calcualteDifference } = require('./core/calcualteDifference');
+const { convert } = require('./core/convert');
 
-calcualteDifference();
 convert();
+calcualteDifference();
 
 
 
