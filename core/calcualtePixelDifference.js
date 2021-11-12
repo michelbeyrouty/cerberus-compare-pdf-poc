@@ -19,7 +19,7 @@ async function calcualtePixelDifference(imagePath1, imagePath2){
   });
 
 
-  console.log(`numDiffPixels between ${imagePath1} and ${imagePath2}: \n` + numDiffPixelsWithBlank);
+  console.log(`Number of different pixels between ${imagePath1} and ${imagePath2} is ${numDiffPixelsWithBlank} \n`);
 }
 
 

@@ -14,7 +14,7 @@ async function convertPdfToImage(filePath, saveFilename){
   const pageToConvertAsImage = 1;
   const isBase64 = false;
 
-  console.log('Converting PDF to image -> ' + filePath);
+  console.log(`Converting PDF \"${filePath}\" to image \"${saveFilename}\" \n `);
   await fromPath(filePath, options)(pageToConvertAsImage, isBase64);
 
 }
